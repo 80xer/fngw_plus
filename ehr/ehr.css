@@ -1,0 +1,8 @@
+.critical#calendarViewDiv {
+    left: auto;
+    right: 10px;
+}
+
+.calendar-table.toggleView {
+    display: none;
+}
