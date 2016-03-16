@@ -1,16 +1,12 @@
 (function(window){
-    // these are labels for the days of the week
     cal_days_labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-    // these are human-readable month name labels, in order
     cal_months_labels = ['January', 'February', 'March', 'April',
                          'May', 'June', 'July', 'August', 'September',
                          'October', 'November', 'December'];
 
-    // these are the days of the week for each month, in order
     cal_days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-    // this is the current date
     cal_current_date = new Date(); 
 
     function Calendar(month, year) {
@@ -21,22 +17,19 @@
     }
 
     Calendar.prototype.generateHTML = function(){
-        // get first day of month
         console.log('generateHTML');
         var firstDay = new Date(this.year, this.month, 1);
         var startingDay = firstDay.getDay();
 
-        // find number of days in month
         var monthLength = cal_days_in_month[this.month];
 
-        // compensate for leap year
-        if (this.month == 1) { // February only!
+        if (this.month == 1) { // 2월!!!
             if((this.year % 4 == 0 && this.year % 100 != 0) || this.year % 400 == 0){
                 monthLength = 29;
             }
         }
 
-        // do the header
+        // header
         var monthName = cal_months_labels[this.month]
         var html = '<table class="calendar-table toggleView">';
         html += '<tr><th colspan="7">';
@@ -50,11 +43,11 @@
         }
         html += '</tr><tr>';
 
-        // fill in the days
+        // days
         var day = 1;
-        // this loop is for is weeks (rows)
+        // weeks (rows)
         for (var i = 0; i < 9; i++) {
-            // this loop is for weekdays (cells)
+            // weekdays (cells)
             for (var j = 0; j <= 6; j++) { 
                 html += '<td class="calendar-day">';
                 if (day <= monthLength && (i > 0 || j >= startingDay)) {
