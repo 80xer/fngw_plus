@@ -1,1 +1,13 @@
-console.log('in background');
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    //console.log('before', details);
+    if (details.url == "http://www.mozilla.org/") {
+      return {redirectUrl: "https://www.google.com/chrome/"};
+    };
+  },
+  {
+    urls: ["http://www.mozilla.org/*"],
+    types: ["main_frame"]
+  },
+  ["blocking"]
+);

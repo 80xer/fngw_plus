@@ -1,4 +1,5 @@
 !function() {
+    console.log('in ehr');
     window.addEventListener ("load", ehr, false);
 
     function ehr (evt) {

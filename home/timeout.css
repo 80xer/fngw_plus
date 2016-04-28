@@ -1,0 +1,36 @@
+.fktimeout {
+    margin-bottom: 10px;
+}
+
+#inputWrap {
+    overflow: hidden;
+    height: 0px;
+    -webkit-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
+}
+
+#inputWrap.show {
+    height: 45px;
+}
+
+#fakeStr {
+    font-size: 20px;
+    padding: 0px;
+    width: 220px;
+    text-align: center;
+    font-weight: bold;
+    color: #37acb3;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    border: 1px solid #37acb3;
+    line-height: 35px;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s;;
+    -o-transition: opacity 0.3s;;
+    transition: opacity 0.3s;;
+}
+
+#inputWrap.show #fakeStr {
+    opacity: 1;
+}
