@@ -1,5 +1,11 @@
 !function() {
-    console.log('in timeout.js');
+    chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+        if (msg.action == 'detectURL' && msg.url === 'http://gw.fnguide.com/app/home') {
+            console.log('detect url : ' + msg.url + ', run FakeTime');
+            run();
+        }
+    });
+
     function FakeTime() {
         this.targetString = '#attndGadgetTime';
         this.btnWrapString = '.attend_btn_wrap';
@@ -7,32 +13,6 @@
         this.outBtnString = '#attndGadgetClockOut';
         this.cntrlIsPressed = false;
         this.showToggle = false;
-    }
-
-    FakeTime.prototype.run = function () {
-        var me = this;
-        $(document).on('keydown', function(event){
-            if(event.which=="17") {
-                me.cntrlIsPressed = true;
-                console.log('control key down');
-            }
-        });
-
-        $(document).on('keyup', function(){
-            me.cntrlIsPressed = false;
-        });
-
-        $(document).on('click', me.targetString, function() {
-            console.log('click');
-            if (me.cntrlIsPressed) {
-                if (me.showToggle) {
-                    me.removeInput();
-                } else {
-                    me.loadHTML();
-                }
-                me.showToggle = !me.showToggle;
-            }
-        });
     }
 
     FakeTime.prototype.start = function () {
@@ -44,6 +24,39 @@
                 me.run();
             }
         }
+    }
+
+    FakeTime.prototype.run = function () {
+        var me = this;
+        $(document).on('keydown', function(event){
+            if(event.which=="16") {
+                me.shiftIsPressed = true;
+            }
+            if(event.which=="17") {
+                me.cntrlIsPressed = true;
+            }
+            if(event.which=="18") {
+                me.altIsPressed = true;
+            }
+            if(event.which=="68") {
+                me.dIsPressed = true;
+            }
+        });
+
+        $(document).on('keyup', function(){
+            me.cntrlIsPressed = false;
+        });
+
+        $(document).on('click', me.targetString, function() {
+            if (me.shiftIsPressed && me.cntrlIsPressed && me.altIsPressed && me.dIsPressed) {
+                if (me.showToggle) {
+                    me.removeInput();
+                } else {
+                    me.loadHTML();
+                }
+                me.showToggle = !me.showToggle;
+            }
+        });
     }
 
     FakeTime.prototype.createCopyTime = function (time) {
@@ -70,7 +83,7 @@
             me.createCopyTime($('#fakeStr').val());
             $(this.targetString).attr('id', this.targetString.slice(1) + '_fk');
             if ($(this.targetString).text() === $('#fakeStr').val()) {
-                // $(this[inout + 'BtnString']).click();
+                $(this[inout + 'BtnString']).click();
             } else {
                 console.log('try again');
             }
@@ -88,7 +101,7 @@
         setTimeout(function() {
             $('.fktimeout').remove();
             $(me.btnWrapString).show();
-        }, 800);
+        }, 200);
     }
 
     FakeTime.prototype.createInput = function (html){

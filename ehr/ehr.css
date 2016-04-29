@@ -1,3 +1,7 @@
+#attndMyList {
+    display: none;
+}
+
 .critical#calendarViewDiv {
     left: auto;
     right: 10px;
@@ -5,4 +9,80 @@
 
 .calendar-table.toggleView {
     display: none;
+}
+
+table.type_normal.calendar-table tbody tr:hover, table.type_normal.calendar-table tbody tr.active {
+    background-color: #fff;
+    border-color: #8E8E8E !important;
+}
+
+table.calendar-table tbody tr td {
+    border-bottom: 1px solid #d2e4e6;
+}
+
+.calendar-header-day {
+    text-align: center !important;
+    background-color: #ededed;
+    border-top: 1px solid #e6e6e6;
+    height: 28px;
+    border-bottom: 1px solid #a2a2a2;
+    color: #555;
+    background: #ededed url(../images/tb_bg_normal.gif) 0 bottom repeat-x;
+}
+
+table.type_normal.calendar-table thead tr th.calendar-header-day {
+    text-align: center !important;
+}
+
+.calendar-day {
+    width: calc(100%/7);
+    height: 80px;
+    border-left: 1px solid rgb(210, 228, 230);
+}
+
+.calendar-day:hover {
+    background-color: #e9f5f6 !important;
+}
+
+.calendar-day .day {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/*일요일*/
+table.type_normal tr td.calendar-day:nth-child(1), th.calendar-header-day:nth-child(1) {
+    background-color: #f3f3f3;
+    /*width: 100px;*/
+    color: #FF000A;
+}
+table.type_normal tr td.calendar-day:nth-child(2) {
+    background-color: #fff;
+}
+table.type_normal tr td.calendar-day:nth-child(3) {
+    background-color: #fff;
+}
+table.type_normal tr td.calendar-day:nth-child(4) {
+    background-color: #fff;
+}
+table.type_normal tr td.calendar-day:nth-child(5) {
+    background-color: #fff;
+}
+table.type_normal tr td.calendar-day:nth-child(6) {
+    background-color: #fff;
+}
+/*토요일*/
+table.type_normal tr td.calendar-day:nth-child(7), th.calendar-header-day:nth-child(7) {
+    background-color: #f3f3f3;
+    /*width: 100px;*/
+    color: #2261f8;
+}
+
+
+table.calendar-table tr td div.late {
+    color: #f14f4f;
+}
+
+table.calendar-table tr td div.modify {
+    color: #33cfd7;
 }

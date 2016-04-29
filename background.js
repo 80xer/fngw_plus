@@ -1,13 +1,7 @@
-chrome.webRequest.onBeforeRequest.addListener(
-  function(details) {
-    //console.log('before', details);
-    if (details.url == "http://www.mozilla.org/") {
-      return {redirectUrl: "https://www.google.com/chrome/"};
-    };
-  },
-  {
-    urls: ["http://www.mozilla.org/*"],
-    types: ["main_frame"]
-  },
-  ["blocking"]
-);
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+    if (changeInfo.status == 'complete') {
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+            chrome.tabs.sendMessage(tabs[0].id, {action: "detectURL", url: tabs[0].url}, function(response) {});  
+    });
+    }
+});
