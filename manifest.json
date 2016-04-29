@@ -4,11 +4,6 @@
     "description": "Plug-in with useful features for fnguide groupware.",
     "version": "1.0",
 
-    // "browser_action": {
-    //     "default_icon": "icon.png",
-    //     "default_popup": "popup.html"
-    // },
-
     "permissions": [
         "webRequest", "webRequestBlocking",
         "tabs",
@@ -36,5 +31,7 @@
         "persistent": true
     },
 
-    "web_accessible_resources": ["home/inputFake.html", "ehr/cal.html"]
+    "web_accessible_resources": ["home/inputFake.html", "ehr/cal.html"],
+
+    "icons": { "16": "icon16.png" }
 }
