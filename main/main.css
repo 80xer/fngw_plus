@@ -1,0 +1,36 @@
+.plusimg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+
+.plusimg.show {
+    opacity: 1;
+}
+
+.dutyWrap {
+    text-align: center;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+
+.dutyNotice {
+    color: #3B3B3B;
+    background: #fff !important;
+}
+
+.dutyNotice.past {
+    color: #929292;
+}
+
+.dutyNotice.today{
+    color: #F00;
+}
+
+.dutyNotice.tomorrow {
+    color: #F56E1E;
+}

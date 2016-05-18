@@ -1,3 +1,4 @@
+$('#login_submit').text('SIGN IN');
 $('input#username').parent().attr('id', 'usernamediv');
 $('input#password').parent().attr('id', 'userpassworddiv');
 $('input#username').attr('placeholder', 'ID').attr('onfocus',"this.placeholder = ''").attr('onblur',"this.placeholder = 'ID'");
