@@ -10,26 +10,33 @@
                     var index = 0;
                     var date = '';
                     var $dutyDoc = $($.parseHTML(data));
-                    var $findName = $('td:contains("이동은")', $dutyDoc);
+                    var jsInitChecktimer = setInterval (checkForJS_Finish, 111);
+                    function checkForJS_Finish() {
+                        if ($('.profile .info .name').length > 0) {
+                            clearInterval(jsInitChecktimer);
+                            var userName = $('.profile .info .name').text();
+                            var $findName = $('td:contains("' + userName + '")', $dutyDoc);
 
-                    if ($findName.length <= 0) return;
+                            if ($findName.length <= 0) return;
 
-                    $findName = $($findName[$findName.length-1]);
-                    var $parentTr = $findName.parent();
-                    $parentTr.find('td').each(function(idx, td) {
-                        if ($(td).text() === $findName.text()) {
-                            index = idx;
+                            $findName = $($findName[$findName.length-1]);
+                            var $parentTr = $findName.parent();
+                            $parentTr.find('td').each(function(idx, td) {
+                                if ($(td).text() === $findName.text()) {
+                                    index = idx;
+                                }
+                            });
+
+                            if (index <= 7) return;
+
+                            if ($findName.prev().prev().text().trim().length >= 8){
+                                date = $findName.prev().prev().text().trim().replace(/ /g,'');
+                            } else {
+                                date = $findName.prev().prev().prev().text().trim().replace(/ /g,'');
+                            }
+                            setDutyDate(date);
                         }
-                    });
-
-                    if (index <= 7) return;
-
-                    if ($findName.prev().prev().text().trim().length >= 8){
-                        date = $findName.prev().prev().text().trim().replace(/ /g,'');
-                    } else {
-                        date = $findName.prev().prev().prev().text().trim().replace(/ /g,'');
                     }
-                    setDutyDate(date);
                 });
             }
 
@@ -54,12 +61,9 @@
                 var curDay = curDate[2].match(/\d+/)[0];
 
                 var dutyDate = date.split('.');
-                // var dutyYear = dutyDate[0].match(/\d+/)[0];
-                // var dutyMonth = dutyDate[1].match(/\d+/)[0];
-                // var dutyDay = dutyDate[2].match(/\d+/)[0];
-                var dutyYear = 2016;
-                var dutyMonth = 5;
-                var dutyDay = 18;
+                var dutyYear = dutyDate[0].match(/\d+/)[0];
+                var dutyMonth = dutyDate[1].match(/\d+/)[0];
+                var dutyDay = dutyDate[2].match(/\d+/)[0];
 
                 var cDate = new Date(curYear, curMonth-1, curDay);
                 var dDate = new Date(dutyYear, dutyMonth-1, dutyDay);
@@ -80,7 +84,7 @@
                 } else {
                     dutyNotice = dutyYear + '년 ' + dutyMonth + '월 ' + dutyDay + '일 ' + getDayName(dDate) + '<br>당직입니다.';
                 }
-
+                $('.dutyWrap').remove();
                 $dutyDiv = $('<div class="dutyWrap"><span class="dutyNotice ' + colorClass + '">' + dutyNotice + '</span></div>');
                 $dutyDiv.insertAfter('.current_time_wrap');
 
