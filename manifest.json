@@ -2,12 +2,13 @@
     "manifest_version": 2,
     "name": "fnguide groupware plus",
     "description": "Plug-in with useful features for fnguide groupware.",
-    "version": "2.0.1",
+    "version": "3.1.0",
     "short_name": "fngw_plus",
     "permissions": [
         "webRequest", "webRequestBlocking",
         "tabs",
-        "https://gw.fnguide.com/*"
+        "https://gw.fnguide.com/*",
+        "storage"
     ],
 
     "content_scripts": [
@@ -20,8 +21,8 @@
         {
             "run_at" :"document_end",
             "matches": ["http://gw.fnguide.com/*"],
-            "js": ["lib/jquery-2.2.1.min.js", "ehr/cal.js", "ehr/ehr.js", "lib/jquery.timepicker.min.js", "home/timeout.js", "lib/jquery.dataTables.min.js"],
-            "css": ["lib/jquery.timepicker.css", "home/timeout.css", "ehr/ehr.css"]
+            "js": ["lib/jquery-2.2.1.min.js", "ehr/cal.js", "ehr/ehr.js", "lib/jquery.timepicker.min.js", "home/timeout.js", "devteam/devteam.js", "menu/main.js"],
+            "css": ["lib/jquery.timepicker.css", "home/timeout.css", "ehr/ehr.css", "devteam/devteam.css", "menu/main.css"]
         }
     ],
     "background": {
@@ -31,7 +32,7 @@
         "persistent": true
     },
 
-    "web_accessible_resources": ["home/inputFake.html", "ehr/cal.html"],
+    "web_accessible_resources": ["home/inputFake.html", "ehr/cal.html", "img/fngwplus.png"],
 
     "icons": { "16": "icon16.png" }
 }

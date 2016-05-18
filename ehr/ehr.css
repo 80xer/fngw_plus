@@ -2,12 +2,11 @@
     top: 300px !important;
 }
 .fngw_plus_btn_wrapper {
-    position: absolute;
     top: 0;
     right: 0;
-    line-height: 45px;
+    line-height: 15px;
     text-align: right;
-    padding: 10px;
+    padding: 0px;
 }
 .fngw_plus_btn {
     font-size: 25px;
@@ -38,11 +37,14 @@
     color: rgb(82, 177, 252);
 }
 
-div#dept_btns {
-    line-height: 40px;
+ul#dept_btns {
+    padding: 10px;
+    line-height: 45px;
 }
 
-span.btn_tool_depts.fngw_plus_btn {
+.btn_tool_depts.fngw_plus_btn {
+    display: inline-block;
+    line-height: 15px;
     font-size: 15px;
     margin-left: 5px;
     padding: 10px 15px;
@@ -50,18 +52,29 @@ span.btn_tool_depts.fngw_plus_btn {
     color: #777;
 }
 
-span.btn_tool_depts.fngw_plus_btn:hover {
+.btn_tool_depts.fngw_plus_btn:hover, .btn_tool_depts.fngw_plus_btn.active {
     background-color: #ffffff;
-    color: #000;
+    color: #37ACB3;
 }
 
 .go_wrap #attndMyList {
     display: none;
 }
 
-.critical#calendarViewDiv {
-    left: auto;
+#calendarViewDiv {
+    position:absolute;
+    top: 3px;
     right: 10px;
+}
+
+#btnCalendarView {
+    background-color: #E9E9E9;
+    font-size: 13px;
+}
+
+#btnCalendarView:hover {
+    background-color: #fff;
+    color: #37ACB3;
 }
 
 .calendar-table.toggleView {

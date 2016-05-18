@@ -56,14 +56,14 @@
             }
             dept.sort();
             $('#dept_btns').remove();
-            var $div = $('<div id="dept_btns" class="fngw_plus_btn_wrapper">');
+            var $div = $('<ul id="dept_btns" class="fngw_plus_btn_wrapper">');
             for (var i = 0; i < dept.length; i++) {
-                $div.append('<span class="btn_tool_depts fngw_plus_btn">' + dept[i] + '</span>');
+                $div.append('<li class="btn_tool_depts fngw_plus_btn">' + dept[i] + '</li>');
             }
             // $div.insertBefore('#deptAttndListWapper');
-            $div.appendTo('#content');
+            $div.insertBefore('#content .content_page');
 
-            $('span.btn_tool_depts').click(function(){
+            $('li.btn_tool_depts').click(function(){
                 var sTypeSelector, deptVal, sKeywordSelector, sBtnSelector;
                 if ($('#attnd_tab>ul>li.on.first.daily').length > 0) {
                     sTypeSelector = '#searchTypes';
@@ -75,11 +75,17 @@
                     sKeywordSelector = '#keyword';
                 }
                 sBtnSelector = '#searchBtn';
-                console.log(sTypeSelector, sKeywordSelector, sBtnSelector);
                 $(sTypeSelector).val(deptVal);
                 $(sKeywordSelector).val($(this).text());
                 $(sBtnSelector)[0].click();
+                setActiveFilter(sKeywordSelector);
             });
+
+
+            function setActiveFilter(sKeywordSelector) {
+                $("li.btn_tool_depts").removeClass('active');
+                $("li.btn_tool_depts").filter(function() { return ($(this).text() === $(sKeywordSelector).val()) }).addClass('active');
+            }
 
         }).fail(function (jqXHR, textStatus) {
             console.log( "Request failed: " + jqXHR + ', ' + textStatus );
@@ -272,11 +278,11 @@
             if(showing) {
                 $('#attndMyList').hide();
                 $('.calendar-table ').show();
-                $('#btnCalendarView span').text('리스트 보기');
+                $('#btnCalendarView').text('리스트 보기');
             } else {
                 $('#attndMyList').show();
                 $('.calendar-table ').hide();
-                $('#btnCalendarView span').text('캘린더 보기');
+                $('#btnCalendarView').text('캘린더 보기');
             }
             showing = !showing;
         }
