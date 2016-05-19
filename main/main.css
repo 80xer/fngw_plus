@@ -11,26 +11,32 @@
 }
 
 .dutyWrap {
-    text-align: center;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 20px;
     font-weight: bold;
     padding-top: 5px;
+    padding-left: 20px;
+    background: #fff !important;
+    width: 200px;
+}
+
+.dayNotice {
+    display: inline-block;
+    width: 35px;
 }
 
 .dutyNotice {
     color: #3B3B3B;
-    background: #fff !important;
 }
 
-.dutyNotice.past {
-    color: #929292;
+.dutyWrap.past .dutyNotice{
+    color: #A4A3A3;
 }
 
-.dutyNotice.today{
+.dutyWrap.today .dayNotice{
     color: #F00;
 }
 
-.dutyNotice.tomorrow {
+.dutyWrap.tomorrow .dayNotice{
     color: #F56E1E;
 }

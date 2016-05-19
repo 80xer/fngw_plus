@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "fnguide groupware plus",
     "description": "Plug-in with useful features for fnguide groupware.",
-    "version": "3.3.5",
+    "version": "3.4.1",
     "short_name": "fngw_plus",
     "permissions": [
         "https://docs.google.com/*",
