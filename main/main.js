@@ -3,9 +3,9 @@
         if (msg.action == 'detectURL') {
             if(msg.url === 'http://gw.fnguide.com/app/home') {
                 console.log('detect url : ' + msg.url + ', run home');
+                weburl = 'https://docs.google.com/spreadsheets/d/1-abxTWAXe3ncueigz-b9wHCNl32ayNmsBR9Wn-I3aSo/pubhtml';
                 $.ajax({
-                    url: 'https://docs.google.com/spreadsheets/d/1-abxTWAXe3ncueigz-b9wHCNl32ayNmsBR9Wn-I3aSo/pubhtml?gid=1022397995&single=true'
-                    // url: 'https://docs.google.com/spreadsheets/d/1nHIKvN4rrg45iYKpJDXAKhHUO63LzenD-YiO0J5WwUQ/pubhtml'
+                    url: weburl
                 }).done(function(data){
                     var index = 0;
                     var date = [];
@@ -14,26 +14,18 @@
                     function checkForJS_Finish() {
                         if ($('.profile .info .name').length > 0) {
                             clearInterval(jsInitChecktimer);
+                            var sheetId = $('#sheet-menu li:first-child', $dutyDoc).attr('id').replace('sheet-button-','');
                             var userName = $('.profile .info .name').text();
-                            var $findName = $('td:contains("' + userName + '")', $dutyDoc);
+                            var $findName = $('div#' + sheetId + ' tr:nth-child(n+15) td:nth-child(n+8):contains("' + userName + '")', $dutyDoc);
 
                             if ($findName.length <= 0) return;
 
                             for (var i = 0; i < $findName.length; i++) {
                                 var $nameCell = $($findName[i]);
-                                var $prev = $nameCell.prev();
-                                var idx = 0;
-                                while($prev.is(':first-child') !== true) {
-                                    $prev = $prev.prev();
-                                    idx++;
-                                }
-
-                                if (idx > 7) {
-                                    if ($nameCell.prev().prev().text().trim().length >= 8){
-                                        date.push($nameCell.prev().prev().text().trim().replace(/ /g,''));
-                                    } else {
-                                        date.push($nameCell.prev().prev().prev().text().trim().replace(/ /g,''));
-                                    }
+                                if ($nameCell.prev().prev().text().trim().length >= 8){
+                                    date.push($nameCell.prev().prev().text().trim().replace(/ /g,''));
+                                } else {
+                                    date.push($nameCell.prev().prev().prev().text().trim().replace(/ /g,''));
                                 }
                             }
                             setDutyDate(date);

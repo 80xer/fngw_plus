@@ -30,17 +30,17 @@
     function createBtnFilters() {
         $btnWrap = $('<div class="filters fngw_plus_btn_wrapper"></div>');
         $btnWrap.append('<span class="fngw_plus_btn all active">전체</span>');
-        $btnWrap.append('<span class="fngw_plus_btn">개발</span>');
-        $btnWrap.append('<span class="fngw_plus_btn">기획</span>');
-        $btnWrap.append('<span class="fngw_plus_btn">디자인</span>');
-        $btnWrap.append('<span class="fngw_plus_btn">퍼블리싱</span>');
-        $btnWrap.append('<span class="fngw_plus_btn">공통</span>');
+        $btnWrap.append('<span class="fngw_plus_btn" data-cate="[개발]">개발</span>');
+        $btnWrap.append('<span class="fngw_plus_btn" data-cate="[기획]">기획</span>');
+        $btnWrap.append('<span class="fngw_plus_btn" data-cate="[디자인]">디자인</span>');
+        $btnWrap.append('<span class="fngw_plus_btn" data-cate="[퍼블리싱]">퍼블리싱</span>');
+        $btnWrap.append('<span class="fngw_plus_btn" data-cate="[공통]">공통</span>');
         $btnWrap.appendTo('.critical.custom_header');
 
         $('.filters.fngw_plus_btn_wrapper .fngw_plus_btn').not('.all').on('click', function() {
             var filterString = $(this).text();
             $('#searchTypes').val('TITLE');
-            $('#searchKeyword').val($(this).text());
+            $('#searchKeyword').val($(this).data('cate'));
             $('#searchBtn').click();
             setActiveFilter();
         });
